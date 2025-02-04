@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixcloud Search</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <h1>Mixcloud Search</h1>
+
+    <!--User, Cloudcast, Tag Search-->
+    <div id="searchDiv">
+        <h2>Search</h2>
+        <h3>Search Type</h3>
+
+        <!--Radio Buttons-->
+        <input class="radio" type="radio" value="user" name="search" id="user">
+        <label for="user">User</label><br>
+
+        <input class="radio" type="radio" value="cloudcast" name="search" id="cloudcast">
+        <label for="cloudcast">Song</label><br>
+
+        <input class="radio" type="radio" value="tag" name="search" id="tag">
+        <label for="tag">Tag</label><br>
+
+        <h3>Search Term</h3>
+        <input type="text" id="searchText">
+        <input type="submit" id="searchSubmit"><br>
+    </div>
+    
+    <!--Results-->
+    <div id="resultDiv">
+        <h2>Results</h2>
+        <h3 id="Status">Status: </h3>
+        <div class="loader" id="loader"></div>
+        <p class="loading-text" id="loadingText">Loading results...</p>
+        <input type="button" id="Previous" value="Previous">
+        <input type="button" id="Next" value="Next">
+        <br>
+        <p id="infoPanel"></p>
+        <div id="MoreSongs"></div>
+        <p>&copy;2024 Jack Kirk</p>
+    </div>
+    
+    <script>
+        //Setup
+        const submitSearch = document.getElementById("searchSubmit");
+        const status = document.getElementById("Status");
+        const results = document.getElementById("results");
+        const profilePicture = document.getElementById("profilePic");
+        const infoPanel = document.getElementById("infoPanel");
+        const radioButtons = document.getElementsByClassName("radio");
+        const inputField = document.getElementById('searchText');
+        const nextButton = document.getElementById('Next');
+        const previousButton = document.getElementById('Previous');
+        const songDiv = document.getElementById('MoreSongs');
+        const loader = document.getElementById('loader');
+        const loadingText = document.getElementById('loadingText');
+
+        //Globals
+        let nextAPICall;
+        let previousAPICall;
+        let searchType;
+        let isLoading = false;
+
+        //Local storage
+        const searchKey = 'mixcloudLastSearch';
+        const radioKey = 'mixcloudLastType';
+        const storedSearch = localStorage.getItem(searchKey)
+        const storedRadio = localStorage.getItem(radioKey);
+
+        //set last search if exists
+        if(storedSearch) {
+            inputField.value = storedSearch;
+        }
+
+        //Set last radio value if it exists
+        if(storedRadio) {
+            for(let button of radioButtons) {
+                if(button.value === storedRadio) {
+                    button.checked = true;
+                }
+            }
+        }
+
+        function setLoading(loading) {
+            isLoading = loading;
+            loader.style.display = loading ? 'block' : 'none';
+            loadingText.style.display = loading ? 'block' : 'none';
+            submitSearch.disabled = loading;
+            nextButton.disabled = loading;
+            previousButton.disabled = loading;
+            
+            [submitSearch, nextButton, previousButton].forEach(button => {
+                button.classList.toggle('disabled', loading);
+            });
+        }
+
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+    
+        function formatStrings(input, character) {
+            let trimmedInput = input.trim();
+            let formattedInput = trimmedInput.replace(/\s+/g, character);
+            return formattedInput;
+        }
+    
+        async function SearchData() {
+            try {
+                setLoading(true);
+                searchType = "";
+                songDiv.innerHTML = '';
+                let search = document.getElementById("searchText");
+                let formattedSearch = formatStrings(search.value, "+");
+                infoPanel.innerHTML = '';
+        
+                for(let i = 0; i < radioButtons.length; ++i) {
+                    if(radioButtons[i].checked) {
+                        searchType = radioButtons[i].value;
+                    }
+                }
+        
+                let urlBuild = "https://api.mixcloud.com/search?q=limit=20&offset=0&q=" + formattedSearch + "&type=" + searchType;
+        
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 30000);
+                
+                const response = await fetch(urlBuild, {
+                    signal: controller.signal
+                });
+                
+                clearTimeout(timeoutId);
+        
+                ErrorCheck(response);
+                let data = await response.json();
+                await DisplayContent(searchType, data);
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    status.style.display = "block";
+                    status.innerHTML = "Request timed out. Please try again.";
+                } else {
+                    status.style.display = "block";
+                    status.innerHTML = "An error occurred. Please try again.";
+                    console.error('Search error:', error);
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        async function NextButton() {
+            try {
+                infoPanel.innerHTML = '';
+                songDiv.innerHTML = '';
+                const response = await fetch(nextAPICall);
+                ErrorCheck(response);
+                let data = await response.json();
+                await DisplayContent(searchType, data);
+            } catch (error) {
+                status.style.display = "block";
+                status.innerHTML = "Error loading next page. Please try again.";
+                console.error('Next page error:', error);
+            }
+        }
+
+        async function PreviousButton() {
+            try {
+                infoPanel.innerHTML = '';
+                songDiv.innerHTML = '';
+                const response = await fetch(previousAPICall);
+                ErrorCheck(response);
+                let data = await response.json();
+                await DisplayContent(searchType, data);
+            } catch (error) {
+                status.style.display = "block";
+                status.innerHTML = "Error loading previous page. Please try again.";
+                console.error('Previous page error:', error);
+            }
+        }
+
+        async function DisplayContent(lastSearch, data) {
+            if (!data || !data.data) return;
+
+            //Songs
+            if(searchType === "cloudcast") {
+                nextButton.style.display = 'inline-block';
+                previousButton.style.display = 'inline-block';
+                
+                const embedPromises = data.data.map(item => 
+                    fetch("https://api.mixcloud.com" + item.key + "embed-json/")
+                        .then(response => response.json())
+                );
+
+                const iframeDataArray = await Promise.all(embedPromises);
+                const htmlContent = iframeDataArray.map(iframeData => iframeData.html).join('');
+                infoPanel.innerHTML = htmlContent;
+            }
+
+            //Tag content
+            else if(searchType === "tag") {
+                nextButton.style.display = 'inline-block';
+                previousButton.style.display = 'inline-block';
+
+                //Create and store division
+                infoPanel.innerHTML += '<div id="tagDiv"</div>';
+                const tagDiv = document.getElementById("tagDiv");
+                tagDiv.style.display = "flex";
+                tagDiv.style.flexWrap = "wrap";
+                tagDiv.style.rowGap = '2rem';
+                tagDiv.style.columnGap = '4rem';
+                
+                //Iterate through data
+                for(let i = 0; i < data.data.length; i++) {
+                    let tagBuild = '<a href ="' + data.data[i].url + '">' + data.data[i].name + "</a>";
+                    let divBuild = '<div class="Genres">' + tagBuild + '<br><input type="button" class = "Popular" value = "Popular"' 
+                        + 'name=' + formatStrings(data.data[i].name, '-') + '>   <input type="button" class = "New" value = "New" name='
+                        + formatStrings(data.data[i].name, '-') +'>' + '</div>';
+                    tagDiv.innerHTML += divBuild;
+                }
+                
+                let popularButtons = document.getElementsByClassName("Popular");
+                let newButtons = document.getElementsByClassName('New');
+                for(let button of popularButtons) {
+                    button.onclick = PopularSongs;
+                }
+
+                for(let button of newButtons) {
+                    button.onclick = NewSongs;
+                }
+            }
+
+            //User Content
+            else if(searchType === "user") {
+                nextButton.style.display = 'inline-block';
+                previousButton.style.display = 'inline-block';
+
+                infoPanel.innerHTML += '<div id="UserDiv"></div>';
+                let userDiv = document.getElementById("UserDiv");
+                userDiv.style.display = "grid";
+                userDiv.style.gridTemplateRows = "1fr 1fr 1fr 1fr 1fr";
+                userDiv.style.gridTemplateColumns = "1fr 1fr 1fr 1fr";
+
+                for(let i = 0; i < data.data.length; i++) {
+                    let userBuild = '<div><a href="' + data.data[i].url + '">Name: ' + data.data[i].name + '<br><img src="' +
+                         data.data[i].pictures.large + '" alt="Profile Picture"><br></a></div>';
+                    userDiv.innerHTML += userBuild;
+                }
+            }
+
+            if(data.paging.next != null) {
+                nextAPICall = data.paging.next;
+            }
+            if(data.paging.previous != null) {
+                previousAPICall = data.paging.previous;
+            }
+        }
+
+        async function PopularSongs() {
+            try {
+                setLoading(true);
+                const response = await fetch('https://api.mixcloud.com/discover/' + this.name + '/popular/');
+                const data = await response.json();
+                songDiv.innerHTML = '<br><h2>Popular cloudcasts tagged with ' + this.name + ': </h2><br>';
+                
+                const embedPromises = data.data.map(item => 
+                    fetch("https://api.mixcloud.com" + item.key + "embed-json/")
+                        .then(response => response.json())
+                );
+
+                const iframeDataArray = await Promise.all(embedPromises);
+                const htmlContent = iframeDataArray.map(iframeData => iframeData.html).join('');
+                songDiv.innerHTML += htmlContent;
+            } catch (error) {
+                status.style.display = "block";
+                status.innerHTML = "Error loading popular songs. Please try again.";
+                console.error('Popular songs error:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        async function NewSongs() {
+            try {
+                setLoading(true);
+                const response = await fetch('https://api.mixcloud.com/discover/' + this.name + '/latest/');
+                const data = await response.json();
+                songDiv.innerHTML = '<h2>New cloudcasts tagged with ' + this.name + ': </h2><br>';
+
+                const embedPromises = data.data.map(item => 
+                    fetch("https://api.mixcloud.com" + item.key + "embed-json/")
+                        .then(response => response.json())
+                );
+
+                const iframeDataArray = await Promise.all(embedPromises);
+                const htmlContent = iframeDataArray.map(iframeData => iframeData.html).join('');
+                songDiv.innerHTML += htmlContent;
+            } catch (error) {
+                status.style.display = "block";
+                status.innerHTML = "Error loading new songs. Please try again.";
+                console.error('New songs error:', error);
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        function ErrorCheck(response) {
+            if(response.status === 404) {
+                status.style.display = "block";
+                status.innerHTML = "No results found";
+                return 0;
+            } else if(response.status === 400) {
+                status.style.display = "block";
+                status.innerHTML = "Please enter a search term";
+                return 0;
+            } else {
+                status.style.display = "none";
+            }
+        }
+
+        const debouncedSearch = debounce(SearchData, 500);
+        submitSearch.onclick = debouncedSearch;
+        
+        nextButton.onclick = async () => {
+            setLoading(true);
+            try {
+                await NextButton();
+            } finally {
+                setLoading(false);
+            }
+        };
+        
+        previousButton.onclick = async () => {
+            setLoading(true);
+            try {
+                await PreviousButton();
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        inputField.onchange = e => {
+            localStorage.setItem(searchKey, e.target.value);
+        }
+
+        for(let button of radioButtons) {
+            button.onchange = e => {
+                localStorage.setItem(radioKey, button.value);
+            }
+        }
+
+        inputField.addEventListener("keypress", function(event) {
+            if(event.key === "Enter") {
+                event.preventDefault();
+                submitSearch.click();
+            }
+        });
+
+        window.onerror = function(message, source, lineno, colno, error) {
+            if (message.includes('sentry')) {
+                return true;
+            }
+            return false;
+        };
+    </script>
+</body>
+</html>

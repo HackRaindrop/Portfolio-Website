@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dungeon Depths</title>
+    <link rel="stylesheet" href="../style/unitystyles.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Dungeon Depths</h1>
+            <div class="tech-stack">
+                <span class="tech-tag">Unity</span>
+                <span class="tech-tag">WebGL</span>
+                <span class="tech-tag">3D Modeling</span>
+                <span class="tech-tag">PBR Texturing</span>
+            </div>
+        </header>
+
+        <div id="unity-container">
+            <canvas id="unity-canvas"></canvas>
+            <div id="unity-loading-bar">
+                <div id="unity-progress-bar"></div>
+            </div>
+            <div id="unity-footer">
+                <button class="btn" id="fullscreen-button">Fullscreen</button>
+                <div class="tech-tag">Press ESC to exit fullscreen</div>
+            </div>
+        </div>
+
+        <div class="project-details">
+            <h2>About This Environment</h2>
+            <p>This 3D environment was created using Unity and showcases advanced modeling and texturing techniques. The
+                scene demonstrates proper PBR material usage, optimized geometry, and efficient lighting solutions.</p>
+
+            <h2>Controls</h2>
+            <p>Use the following controls to navigate the environment:</p>
+            <ul style="margin-left: 2rem; color: let(--text-secondary);">
+                <li>WASD - Move around</li>
+                <li>Mouse - Look around</li>
+                <li>Shift - Run</li>
+                <li>Space - Jump</li>
+            </ul>
+
+            <h2>Technical Details</h2>
+            <div class="tech-stack">
+                <span class="tech-tag">Unity URP</span>
+                <span class="tech-tag">Global Illumination</span>
+                <span class="tech-tag">Custom Shaders</span>
+                <span class="tech-tag">Optimized Meshes</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Unity loader script - Replace with your actual Unity build files
+        let buildUrl = "Unity Build/Build";
+        let loaderUrl = buildUrl + "/Unity Build.loader.js";
+        let config = {
+            dataUrl: buildUrl + "/Unity Build.data.gz",
+            frameworkUrl: buildUrl + "/Unity Build.framework.js.gz",
+            codeUrl: buildUrl + "/Unity Build.wasm.gz",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Jack Kirk",
+            productName: "Dungeon Depths",
+            productVersion: "1.0"
+        };
+
+        // Unity loading implementation
+        let container = document.querySelector("#unity-container");
+        let canvas = document.querySelector("#unity-canvas");
+        let progressBar = document.querySelector("#unity-progress-bar");
+        let fullscreenButton = document.querySelector("#fullscreen-button");
+
+        let script = document.createElement("script");
+        script.src = loaderUrl;
+        script.onload = () => {
+            createUnityInstance(canvas, config, (progress) => {
+                progressBar.style.width = 100 * progress + "%";
+            }).then((unityInstance) => {
+                fullscreenButton.onclick = () => {
+                    unityInstance.SetFullscreen(1);
+                };
+            });
+        };
+        document.body.appendChild(script);
+    </script>
+</body>
+
+</html>
