@@ -60,13 +60,13 @@
                 <a href="https://github.com/HackRaindrop" class="social-icon" aria-label="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="media/Jack_Kirk_2025_SWEN.pdf" class="social-icon" aria-label="Resume">
+                <a href="media/Jack_Kirk_Resume.pdf" class="social-icon" aria-label="Resume">
                     <i class="fas fa-file-alt"></i>
                 </a>
             </div>
             <div class="hero-cta animate-on-scroll">
                 <a href="#featured" class="btn btn-primary">View My Work</a>
-                <a href="media/Jack_Kirk_2025_SWEN.pdf" class="btn btn-secondary">Download Resume</a>
+                <a href="media/Jack_Kirk_Resume.pdf" class="btn btn-secondary">Download Resume</a>
             </div>
         </div>
         <div class="hero-background">
@@ -81,7 +81,7 @@
             <h2 class="section-title animate-on-scroll">Featured Project</h2>
             <div class="featured-project animate-on-scroll">
                 <div class="featured-image">
-                    <img src="media/mend.png" alt="Mend">
+                    <img src="media/gamejam.PNG" alt="Mend (Unlikely Collaborators game jam)">
                 </div>
                 <div class="featured-content">
                     <h3>Mend</h3>
@@ -106,9 +106,64 @@
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="3d">3D</button>
                 <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
                 <button class="filter-btn" data-filter="game">Game Dev</button>
             </div>
             <div class="projects-grid">
+                <div class="project-card animate-on-scroll" data-category="web">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">YetiTracks</div>
+                        <div class="project-overlay">
+                            <a href="https://yetitracks-a5d0c068ee86.herokuapp.com/maker" class="overlay-btn" target="_blank" rel="noopener noreferrer">Open app</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>YetiTracks</h3>
+                        <p>Rich media web app for IGME 430 (Rich Media Web App Dev II): track ski runs, review performance, and manage sessions. Live deployment on Heroku.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">IGME 430</span>
+                            <span class="tech-tag">JavaScript</span>
+                            <span class="tech-tag">Web App</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/HackRaindrop/YetiTracks" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">GoalieFinder</div>
+                        <div class="project-overlay">
+                            <span class="overlay-btn">Link Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>GoalieFinder</h3>
+                        <p>Flutter app for IGME 340 (Multi Platform Media App Dev), focused on usability, discoverability, and responsive layout across platforms.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">IGME 340</span>
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Dart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll" data-category="mobile">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">RIT Food Rater</div>
+                        <div class="project-overlay">
+                            <span class="overlay-btn">Link Coming Soon</span>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>RIT Food Rater</h3>
+                        <p>Swift iOS app for ISTE 454 for rating and comparing dining options with clear data presentation. Not published on the App Store.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">ISTE 454</span>
+                            <span class="tech-tag">Swift</span>
+                            <span class="tech-tag">iOS</span>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card animate-on-scroll" data-category="3d">
                     <div class="project-image">
                         <img src="media/dungeon.PNG" alt="Dungeon Depths">
@@ -130,14 +185,12 @@
                 <div class="project-card animate-on-scroll" data-category="game">
                     <div class="project-image">
                         <img src="media/holysticj.PNG" alt="Holy Stick">
-                        <div class="project-overlay">
-                            <span class="overlay-btn">Coming Soon</span>
-                        </div>
                     </div>
                     <div class="project-content">
                         <h3>Holy Stick</h3>
                         <p>A dynamic 2D platformer developed collaboratively with a team of 5. Features unique gameplay
                             mechanics and engaging level design. Demonstrates strong teamwork and project management skills.
+                            Available as a download build only, not as a web project.
                         </p>
                         <div class="tech-stack">
                             <span class="tech-tag">2D Game Dev</span>
@@ -185,23 +238,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="project-card animate-on-scroll" data-category="3d">
-                    <div class="project-image">
-                        <img src="media/shapes.png" alt="Created shapes">
-                        <div class="project-overlay">
-                            <span class="overlay-btn">In Progress</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Real Time Simulation and Games II</h3>
-                        <p>I am currently enrolled in RTSG II, a C++ class where we are learning how to utilize
-                            OpenGL for 3D graphics. Check back later to see my progress!</p>
-                        <div class="tech-stack">
-                            <span class="tech-tag">OpenGL</span>
-                            <span class="tech-tag">C++</span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -217,17 +253,18 @@
                     </div>
                     <div class="project-content">
                         <h3>This Website</h3>
-                        <p>With the assistance of Claude AI, I created this portfolio website to showcase my projects and skills.</p>
+                        <p>I built this portfolio with Cursor and AI-assisted development to showcase my projects and skills.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Web Design</span>
-                            <span class="tech-tag">AI</span>
+                            <span class="tech-tag">Cursor</span>
+                            <span class="tech-tag">AI-assisted</span>
                             <span class="tech-tag">UI/UX</span>
                         </div>
                     </div>
                 </div>
                 <div class="project-card animate-on-scroll">
                     <div class="project-image">
-                        <img src="media/mend.png" alt="Mend">
+                        <img src="media/gamejam.PNG" alt="Mend">
                         <div class="project-overlay">
                             <a href="https://hackrain.itch.io/mend" class="overlay-btn">View Project</a>
                         </div>
@@ -246,6 +283,62 @@
                         </div>
                         <div class="project-links">
                             <a href="https://www.unlikelycollaborators.com/" class="btn btn-primary">Unlikely Collaborators</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">Gort Lightshow</div>
+                        <div class="project-overlay">
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3696184720" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gort Lightshow</h3>
+                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Adds a goal-celebration lightshow you can toggle with <code>/lightshow</code>.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Unity</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Steam Workshop</span>
+                            <span class="tech-tag">Puck</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">Gort Sound Pack</div>
+                        <div class="project-overlay">
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688205089" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gort Sound Pack</h3>
+                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Custom sounds, forked from an existing workshop sound pack with my own edits and additions.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Unity</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Steam Workshop</span>
+                            <span class="tech-tag">Puck</span>
+                            <span class="tech-tag">Audio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card animate-on-scroll">
+                    <div class="project-image">
+                        <div class="project-image-placeholder">Gort Sound Library</div>
+                        <div class="project-overlay">
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688131153" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Gort Sound Library</h3>
+                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Sound library with randomized goal horns, forked from another workshop pack and customized.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Unity</span>
+                            <span class="tech-tag">C#</span>
+                            <span class="tech-tag">Steam Workshop</span>
+                            <span class="tech-tag">Puck</span>
+                            <span class="tech-tag">Audio</span>
                         </div>
                     </div>
                 </div>
@@ -275,7 +368,7 @@
                     <a href="https://github.com/HackRaindrop" class="social-icon" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="media/Jack_Kirk_2025_SWEN.pdf" class="social-icon" aria-label="Resume">
+                    <a href="media/Jack_Kirk_Resume.pdf" class="social-icon" aria-label="Resume">
                         <i class="fas fa-file-alt"></i>
                     </a>
                 </div>

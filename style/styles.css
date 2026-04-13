@@ -6,6 +6,8 @@
     --text-secondary: #4a5568;
     --header-bg: #2c3e50;
     --nav-bg: #34495e;
+    /* Nav bar stays dark; links must stay light for contrast */
+    --nav-link: rgba(255, 255, 255, 0.92);
     --accent-color: #3498db;
     --accent-hover: #2980b9;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -19,6 +21,7 @@
     --text-secondary: #e2e8f0;
     --header-bg: #1a1a2e;
     --nav-bg: #161625;
+    --nav-link: rgba(255, 255, 255, 0.92);
     --accent-color: #60a5fa;
     --accent-hover: #3b82f6;
     --card-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
@@ -71,7 +74,7 @@ body {
 }
 
 .nav-links a {
-    color: var(--text-secondary);
+    color: var(--nav-link);
     text-decoration: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
@@ -94,7 +97,7 @@ body {
 .mobile-menu-btn span {
     width: 25px;
     height: 2px;
-    background-color: var(--text-secondary);
+    background-color: var(--nav-link);
     transition: all 0.3s ease;
 }
 
@@ -108,6 +111,19 @@ body {
     padding: 1rem;
     flex-direction: column;
     gap: 1rem;
+}
+
+.mobile-menu a {
+    color: var(--nav-link);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Hero Section */
@@ -239,6 +255,20 @@ body {
     border-radius: 8px;
 }
 
+.featured-image-placeholder {
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
 .featured-content {
     text-align: left;
     max-width: 600px;
@@ -297,6 +327,19 @@ body {
     transition: transform 0.3s ease;
 }
 
+.project-image-placeholder {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
 .project-overlay {
     position: absolute;
     top: 0;
@@ -346,6 +389,15 @@ body {
 
 .project-content p {
     color: var(--text-secondary);
+}
+
+.project-content code {
+    font-size: 0.9em;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
 }
 
 /* Tech Stack Tags */

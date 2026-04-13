@@ -1,0 +1,8 @@
+{
+  "name": "portfolio-website",
+  "private": true,
+  "description": "Static portfolio for GitHub Pages. No build step; npm scripts are local dev only.",
+  "scripts": {
+    "dev": "npx --yes serve . -l 5500"
+  }
+}
