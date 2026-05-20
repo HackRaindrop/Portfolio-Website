@@ -1,0 +1,19 @@
+{
+  "name": "Jack Kirk Portfolio",
+  "description": "Static portfolio site served with Express on Heroku",
+  "repository": "https://github.com/HackRaindrop/Portfolio-Website",
+  "keywords": ["portfolio", "express", "static"],
+  "stack": "heroku-24",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {},
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "eco"
+    }
+  }
+}

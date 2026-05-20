@@ -1,97 +1,154 @@
-// Add this at the beginning of the file
-window.addEventListener('load', () => {
-    const loader = document.querySelector('.loader');
-    loader.style.display = 'none';
-});
-
-// Theme toggle functionality
-const themeToggle = document.querySelector('.theme-toggle');
-const themeIcon = document.querySelector('.theme-icon');
 const root = document.documentElement;
+const loader = document.querySelector('.loader');
+const themeToggle = document.querySelector('.theme-toggle');
+const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+const mobileMenu = document.querySelector('.mobile-menu');
+const backToTop = document.querySelector('.back-to-top');
+const statusMessage = document.getElementById('status-message');
+const statusTime = document.getElementById('status-time');
 
-// Check for saved theme preference
-const savedTheme = localStorage.getItem('theme') || 'light';
-root.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
+const STATUS_LINES = [
+    'Building the next thing',
+    'Open to internships & collabs',
+    'RIT · Game Design and Development',
+    'Shipped on Heroku',
+];
 
-themeToggle.addEventListener('click', () => {
-    const currentTheme = root.getAttribute('data-theme');
-    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    root.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    updateThemeIcon(newTheme);
-});
+let statusIndex = 0;
 
-function updateThemeIcon(theme) {
-    themeIcon.textContent = theme === 'light' ? '🌞' : '🌙';
+function initLoader() {
+    document.body.classList.add('is-loading');
+    window.setTimeout(() => {
+        loader?.classList.add('is-hidden');
+        document.body.classList.remove('is-loading');
+    }, 950);
 }
 
-// Smooth scrolling for navigation links and CTA button
-document.querySelectorAll('nav a, .hero-cta a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const section = document.querySelector(this.getAttribute('href'));
-        section.scrollIntoView({
-            behavior: 'smooth'
+function initTheme() {
+    const saved = localStorage.getItem('theme') || 'dark';
+    root.setAttribute('data-theme', saved);
+
+    themeToggle?.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+    });
+}
+
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+            const id = anchor.getAttribute('href');
+            if (!id || id === '#') return;
+
+            const target = document.querySelector(id);
+            if (!target) return;
+
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            closeMobileMenu();
         });
     });
-});
+}
 
-// Add animation class to project cards when they come into view
-const observerOptions = {
-    threshold: 0.2
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = 1;
-            entry.target.style.transform = 'translateY(0)';
-        }
+function initMobileMenu() {
+    mobileMenuBtn?.addEventListener('click', () => {
+        const isOpen = mobileMenuBtn.classList.toggle('is-open');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+        if (mobileMenu) mobileMenu.hidden = !isOpen;
     });
-}, observerOptions);
+}
 
-document.querySelectorAll('.project-card').forEach(card => {
-    card.style.opacity = 0;
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-    observer.observe(card);
-});
+function closeMobileMenu() {
+    mobileMenuBtn?.classList.remove('is-open');
+    mobileMenuBtn?.setAttribute('aria-expanded', 'false');
+    if (mobileMenu) mobileMenu.hidden = true;
+}
 
-// Project filtering functionality
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+function initBackToTop() {
+    window.addEventListener('scroll', () => {
+        if (!backToTop) return;
+        backToTop.classList.toggle('is-visible', window.scrollY > 400);
+    }, { passive: true });
+}
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active class to clicked button
-        button.classList.add('active');
-        
-        const filterValue = button.getAttribute('data-filter');
-        
-        projectCards.forEach(card => {
-            // Get the categories from the data-category attribute
-            const categories = card.getAttribute('data-category')?.split(' ') || [];
-            
-            if (filterValue === 'all' || categories.includes(filterValue)) {
-                card.style.display = 'block';
-                // Re-trigger animation
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                // Force reflow
-                void card.offsetWidth;
-                // Add animation
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            } else {
-                card.style.display = 'none';
-            }
+function initStatusBar() {
+    const updateClock = () => {
+        if (!statusTime) return;
+        const now = new Date();
+        statusTime.textContent = now.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+    };
+
+    const rotateMessage = () => {
+        if (!statusMessage) return;
+        statusIndex = (statusIndex + 1) % STATUS_LINES.length;
+        statusMessage.textContent = STATUS_LINES[statusIndex];
+    };
+
+    updateClock();
+    window.setInterval(updateClock, 30_000);
+    window.setInterval(rotateMessage, 5000);
+}
+
+function initReveal() {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll(
+        '.hub-card, .about-panel, .featured-project, .project-card, .section-header'
+    );
+
+    if (prefersReduced) {
+        targets.forEach((el) => el.classList.add('is-visible'));
+        return;
+    }
+
+    targets.forEach((el) => el.classList.add('reveal'));
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+}
+
+function initAcademicFilters() {
+    const section = document.getElementById('academic');
+    if (!section) return;
+
+    const filterButtons = section.querySelectorAll('.filter-btn');
+    const projectCards = section.querySelectorAll('.project-card');
+
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach((btn) => btn.classList.remove('active'));
+            button.classList.add('active');
+
+            const filterValue = button.getAttribute('data-filter');
+
+            projectCards.forEach((card) => {
+                const categories = card.getAttribute('data-category')?.split(' ') || [];
+                const show = filterValue === 'all' || categories.includes(filterValue);
+                card.classList.toggle('is-hidden', !show);
+            });
         });
     });
-});
+}
 
-
-
+initLoader();
+initTheme();
+initSmoothScroll();
+initMobileMenu();
+initBackToTop();
+initStatusBar();
+initReveal();
+initAcademicFilters();

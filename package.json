@@ -1,8 +1,16 @@
 {
   "name": "portfolio-website",
+  "version": "1.0.0",
   "private": true,
-  "description": "Static portfolio for GitHub Pages. No build step; npm scripts are local dev only.",
+  "description": "Jack Kirk portfolio — static site served on Heroku",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
-    "dev": "npx --yes serve . -l 5500"
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }

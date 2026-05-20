@@ -1,383 +1,478 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jack Kirk - Portfolio</title>
+    <meta name="description" content="Jack Kirk — software developer and game designer portfolio.">
+    <title>Jack Kirk · Developer & Creator</title>
     <link rel="stylesheet" href="style/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
 </head>
 
-<body>
-    <div class="loader">
-        <div class="loader-spinner"></div>
-    </div>
-
-    <button class="theme-toggle" aria-label="Toggle dark/light mode">
-        <span class="theme-icon">🌞</span>
-    </button>
-
-    <a href="#top" class="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </a>
-
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">JK</div>
-            <div class="nav-links">
-                <a href="#hero">Home</a>
-                <a href="#featured">Featured</a>
-                <a href="#academic">Academic</a>
-                <a href="#personal">Personal</a>
-            </div>
-            <div class="mobile-menu-btn">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
+<body id="top">
+    <div class="loader" aria-hidden="true">
+        <div class="loader-inner">
+            <span class="loader-label">booting portfolio</span>
+            <div class="loader-bar"><span class="loader-bar-fill"></span></div>
         </div>
-    </nav>
-
-    <div class="mobile-menu">
-        <a href="#hero">Home</a>
-        <a href="#featured">Featured</a>
-        <a href="#academic">Academic</a>
-        <a href="#personal">Personal</a>
     </div>
+
+    <div class="page-bg" aria-hidden="true">
+        <div class="grid-overlay"></div>
+        <div class="glow glow-1"></div>
+        <div class="glow glow-2"></div>
+    </div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <div class="nav-container">
+                <a href="#top" class="logo">
+                    <span class="logo-text">Jack Kirk</span>
+                </a>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#featured">Featured</a>
+                    <a href="#academic">Academic</a>
+                    <a href="#personal">Personal</a>
+                </div>
+                <div class="nav-actions">
+                    <button class="theme-toggle" type="button" aria-label="Toggle dark/light mode">
+                        <i class="fas fa-moon theme-icon-dark"></i>
+                        <i class="fas fa-sun theme-icon-light"></i>
+                    </button>
+                    <button class="mobile-menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+        <div class="mobile-menu" hidden>
+            <a href="#about">About</a>
+            <a href="#featured">Featured</a>
+            <a href="#academic">Academic</a>
+            <a href="#personal">Personal</a>
+        </div>
+    </header>
 
     <section id="hero" class="hero-section">
         <div class="hero-content">
-            <h1 class="animate-on-scroll">Jack Kirk</h1>
-            <p class="subtitle animate-on-scroll">Software Developer & Game Designer</p>
-            <div class="social-icons animate-on-scroll">
-                <a href="https://www.linkedin.com/in/jwkirk15" class="social-icon" aria-label="LinkedIn">
+            <p class="hero-eyebrow mono">portfolio</p>
+            <h1>Jack Kirk</h1>
+            <p class="hero-subtitle">Software developer and game designer building web apps, games, and interactive
+                experiences.</p>
+            <div class="skill-tags" aria-label="Focus areas">
+                <span class="skill-tag">WEB_DEV</span>
+                <span class="skill-tag">GAME_DESIGN</span>
+                <span class="skill-tag">UNITY</span>
+                <span class="skill-tag">MOBILE</span>
+                <span class="skill-tag">3D</span>
+                <span class="skill-tag">MODDING</span>
+            </div>
+            <div class="hero-status mono">
+                <span class="status-dot" aria-hidden="true"></span>
+                <span>Available for opportunities</span>
+            </div>
+            <div class="hero-cta">
+                <a href="#featured" class="btn btn-primary">View work</a>
+                <a href="media/Jack_Kirk_Resume.pdf" class="btn btn-secondary" target="_blank"
+                    rel="noopener noreferrer">Resume</a>
+            </div>
+            <div class="hero-social">
+                <a href="https://www.linkedin.com/in/jwkirk15" class="social-link" aria-label="LinkedIn" target="_blank"
+                    rel="noopener noreferrer">
                     <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/HackRaindrop" class="social-icon" aria-label="GitHub">
+                <a href="https://github.com/HackRaindrop" class="social-link" aria-label="GitHub" target="_blank"
+                    rel="noopener noreferrer">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="media/Jack_Kirk_Resume.pdf" class="social-icon" aria-label="Resume">
-                    <i class="fas fa-file-alt"></i>
+                <a href="https://hackrain.itch.io/" class="social-link" aria-label="itch.io" target="_blank"
+                    rel="noopener noreferrer">
+                    <i class="fab fa-itch-io"></i>
                 </a>
             </div>
-            <div class="hero-cta animate-on-scroll">
-                <a href="#featured" class="btn btn-primary">View My Work</a>
-                <a href="media/Jack_Kirk_Resume.pdf" class="btn btn-secondary">Download Resume</a>
-            </div>
-        </div>
-        <div class="hero-background">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
         </div>
     </section>
 
     <main class="container">
+        <section class="hub-section" aria-label="Quick navigation">
+            <div class="hub-grid">
+                <article class="hub-card">
+                    <p class="hub-label mono">Personal</p>
+                    <h3>About</h3>
+                    <p>Background, interests, and what I build.</p>
+                    <a href="#about" class="hub-link">Read more <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="hub-card hub-card-accent">
+                    <p class="hub-label mono">Highlight</p>
+                    <h3>Featured</h3>
+                    <p>Latest standout project - Mend game jam.</p>
+                    <a href="#featured" class="hub-link">See featured <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="hub-card">
+                    <p class="hub-label mono">School</p>
+                    <h3>Academic</h3>
+                    <p>Coursework across web, mobile, 3D, and games.</p>
+                    <a href="#academic" class="hub-link">Browse academic <i class="fas fa-arrow-right"></i></a>
+                </article>
+                <article class="hub-card">
+                    <p class="hub-label mono">Side projects</p>
+                    <h3>Personal</h3>
+                    <p>Mods, portfolio site, jams, and experiments.</p>
+                    <a href="#personal" class="hub-link">Browse personal <i class="fas fa-arrow-right"></i></a>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <div class="section-header">
+                <p class="section-eyebrow mono">// about</p>
+                <h2 class="section-title">Who I am</h2>
+            </div>
+            <div class="about-panel">
+                <p>I'm a developer and designer creating games and software that feel good to use. My work spans rich
+                    media web apps, Android and iOS apps, 3D environments, and Unity projects.</p>
+                <p>When I'm not coding, I'm often tinkering with Puck server mods, refining UX in small tools,
+                    or collaborating on short game jam builds with other creators.</p>
+                <ul class="about-facts mono">
+                    <li><span>RIT</span> B.S. in Game Design and Development</li>
+                    <li><span>Stack</span> JavaScript · C# · Unity · Flutter · Swift · C++ · Substance Painter · Maya
+                    </li>
+                </ul>
+            </div>
+        </section>
+
         <section id="featured" class="featured-section">
-            <h2 class="section-title animate-on-scroll">Featured Project</h2>
-            <div class="featured-project animate-on-scroll">
+            <div class="section-header">
+                <p class="section-eyebrow mono">// featured</p>
+                <h2 class="section-title">Spotlight</h2>
+            </div>
+            <article class="featured-project">
                 <div class="featured-image">
-                    <img src="media/gamejam.PNG" alt="Mend (Unlikely Collaborators game jam)">
+                    <img src="media/gamejam.PNG" alt="Mend — introspective platformer from game jam">
                 </div>
                 <div class="featured-content">
                     <h3>Mend</h3>
-                    <p>Mend is an introspective platformer created for the Unlikely Collaborators & International Game
-                        Developers Association game jam. This game was created in collaboration with two other team
-                        members over 12 days.</p>
+                    <p>An introspective platformer built for the Unlikely Collaborators & IGDA game jam with two
+                        teammates over 12 days. Level design, feel, and narrative pacing were the focus.</p>
                     <div class="tech-stack">
                         <span class="tech-tag">Unity</span>
                         <span class="tech-tag">C#</span>
                         <span class="tech-tag">Game Design</span>
+                        <span class="tech-tag">Level Design</span>
                     </div>
                     <div class="featured-buttons">
-                        <a href="https://hackrain.itch.io/mend" class="btn btn-primary">View Project</a>
+                        <a href="https://hackrain.itch.io/mend" class="btn btn-primary" target="_blank"
+                            rel="noopener noreferrer">Play on itch.io</a>
+                        <a href="https://www.unlikelycollaborators.com/" class="btn btn-secondary" target="_blank"
+                            rel="noopener noreferrer">Jam org</a>
                     </div>
                 </div>
-            </div>
+            </article>
         </section>
 
         <section id="academic" class="projects-section">
-            <h2 class="section-title animate-on-scroll">Academic Projects</h2>
-            <div class="filter-buttons animate-on-scroll">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="3d">3D</button>
-                <button class="filter-btn" data-filter="web">Web</button>
-                <button class="filter-btn" data-filter="mobile">Mobile</button>
-                <button class="filter-btn" data-filter="game">Game Dev</button>
+            <div class="section-header">
+                <p class="section-eyebrow mono">// academic</p>
+                <h2 class="section-title">Coursework & labs</h2>
             </div>
-            <div class="projects-grid">
-                <div class="project-card animate-on-scroll" data-category="web">
+            <div class="filter-buttons" role="toolbar" aria-label="Filter academic projects">
+                <button class="filter-btn active" type="button" data-filter="all">All</button>
+                <button class="filter-btn" type="button" data-filter="3d">3D</button>
+                <button class="filter-btn" type="button" data-filter="web">Web</button>
+                <button class="filter-btn" type="button" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" type="button" data-filter="game">Game Dev</button>
+            </div>
+            <div class="projects-grid academic-grid">
+                <article class="project-card" data-category="web">
                     <div class="project-image">
-                        <div class="project-image-placeholder">YetiTracks</div>
+                        <img src="media/yetitracks.png" alt="YetiTracks ski statistics dashboard">
                         <div class="project-overlay">
-                            <a href="https://yetitracks-a5d0c068ee86.herokuapp.com/maker" class="overlay-btn" target="_blank" rel="noopener noreferrer">Open app</a>
+                            <a href="https://yetitracks-a5d0c068ee86.herokuapp.com/maker" class="overlay-btn"
+                                target="_blank" rel="noopener noreferrer">Open app</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>YetiTracks</h3>
-                        <p>Rich media web app for IGME 430 (Rich Media Web App Dev II): track ski runs, review performance, and manage sessions. Live deployment on Heroku.</p>
+                        <p>Rich media web app for IGME 430: track ski runs, review performance, and manage sessions.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">IGME 430</span>
                             <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Web App</span>
+                            <span class="tech-tag">Heroku</span>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/HackRaindrop/YetiTracks" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                            <a href="https://github.com/HackRaindrop/YetiTracks" class="btn btn-ghost" target="_blank"
+                                rel="noopener noreferrer">GitHub</a>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="mobile">
+                </article>
+                <article class="project-card" data-category="mobile">
                     <div class="project-image">
                         <div class="project-image-placeholder">GoalieFinder</div>
                         <div class="project-overlay">
-                            <span class="overlay-btn">Link Coming Soon</span>
+                            <span class="overlay-btn overlay-muted">Coming soon</span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>GoalieFinder</h3>
-                        <p>Flutter app for IGME 340 (Multi Platform Media App Dev), focused on usability, discoverability, and responsive layout across platforms.</p>
+                        <p>Cross platform flutter app originally built for IGME 340. Now being worked on outside of
+                            class to help users find and contact substitute hockey players for pickup games in their
+                            area.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">IGME 340</span>
                             <span class="tech-tag">Flutter</span>
                             <span class="tech-tag">Dart</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="mobile">
+                </article>
+                <article class="project-card" data-category="mobile">
                     <div class="project-image">
                         <div class="project-image-placeholder">RIT Food Rater</div>
                         <div class="project-overlay">
-                            <span class="overlay-btn">Link Coming Soon</span>
+                            <span class="overlay-btn overlay-muted">Coming soon</span>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>RIT Food Rater</h3>
-                        <p>Swift iOS app for ISTE 454 for rating and comparing dining options with clear data presentation. Not published on the App Store.</p>
+                        <p>Swift iOS app for ISTE 454 for rating and comparing dining options on RIT's campus with clear
+                            data
+                            presentation.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">ISTE 454</span>
                             <span class="tech-tag">Swift</span>
                             <span class="tech-tag">iOS</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="3d">
+                </article>
+                <article class="project-card" data-category="3d">
                     <div class="project-image">
-                        <img src="media/dungeon.PNG" alt="Dungeon Depths">
+                        <img src="media/dungeon.PNG" alt="Dungeon Depths 3D environment">
                         <div class="project-overlay">
-                            <a href="https://hackraindrop.github.io/DungeonDepths/" class="overlay-btn">View Project</a>
+                            <a href="https://hackraindrop.github.io/DungeonDepths/" class="overlay-btn" target="_blank"
+                                rel="noopener noreferrer">View project</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Dungeon Depths</h3>
-                        <p>A 3D environment showcasing modeling and texturing techniques. Created using Maya for modeling
-                            and Substance Painter for material development and texturing.</p>
+                        <p>3D environment showcasing modeling and texturing in Maya and Substance Painter.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Maya</span>
                             <span class="tech-tag">Substance Painter</span>
-                            <span class="tech-tag">3D Modeling</span>
+                            <span class="tech-tag">3D</span>
+                            <span class="tech-tag">Unity</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="game">
+                </article>
+                <article class="project-card" data-category="game">
                     <div class="project-image">
-                        <img src="media/holysticj.PNG" alt="Holy Stick">
+                        <img src="media/holysticj.PNG" alt="Holy Stick 2D platformer">
                     </div>
                     <div class="project-content">
                         <h3>Holy Stick</h3>
-                        <p>A dynamic 2D platformer developed collaboratively with a team of 5. Features unique gameplay
-                            mechanics and engaging level design. Demonstrates strong teamwork and project management skills.
-                            Available as a download build only, not as a web project.
-                        </p>
+                        <p>2D platformer built with a team of five. Unique mechanics, level design, and collaborative
+                            production.</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">2D Game Dev</span>
+                            <span class="tech-tag">2D</span>
                             <span class="tech-tag">Team Project</span>
-                            <span class="tech-tag">Level Design</span>
                             <span class="tech-tag">C#</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="web">
+                </article>
+                <article class="project-card" data-category="web">
                     <div class="project-image">
-                        <img src="media/mixcloud.PNG" alt="Mixcloud Search Website">
+                        <img src="media/mixcloud.PNG" alt="Mixcloud Search website">
                         <div class="project-overlay">
-                            <a href="https://hackraindrop.github.io/MixcloudSearch/" class="overlay-btn">View Project</a>
+                            <a href="https://hackraindrop.github.io/MixcloudSearch/" class="overlay-btn" target="_blank"
+                                rel="noopener noreferrer">View project</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Mixcloud Search</h3>
-                        <p>A search website created as an introduction to utilizing API calls and JSON files to present data
-                            to users. This website uses the Mixcloud API to gather user
-                            requested music, users, and genres.
-                        </p>
+                        <p>Search UI using the Mixcloud API. Searches for music, users, and genres from JSON-driven
+                            requests.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">Web Design</span>
                             <span class="tech-tag">APIs</span>
+                            <span class="tech-tag">Web</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll" data-category="web game">
+                </article>
+                <article class="project-card" data-category="web game">
                     <div class="project-image">
-                        <img src="media/crimson.PNG" alt="Crimson Rift: Eternal Carnage">
+                        <img src="media/crimson.PNG" alt="Crimson Rift shooter game">
                         <div class="project-overlay">
-                            <a href="https://hackraindrop.github.io/CrimsonRift/" class="overlay-btn">View Project</a>
+                            <a href="https://hackraindrop.github.io/CrimsonRift/" class="overlay-btn" target="_blank"
+                                rel="noopener noreferrer">View project</a>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>Crimson Rift: Eternal Carnage</h3>
-                        <p>A JavaScript shooter game similar in style to Galaga.
-                        </p>
+                        <h3>Crimson Rift</h3>
+                        <p>JavaScript shooter inspired by classic arcade shooters. Built for the browser.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">JavaScript</span>
-                            <span class="tech-tag">CSS</span>
-                            <span class="tech-tag">Web Design</span>
+                            <span class="tech-tag">Canvas</span>
+                            <span class="tech-tag">Web</span>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
 
         <section id="personal" class="projects-section">
-            <h2 class="section-title animate-on-scroll">Personal Projects</h2>
+            <div class="section-header">
+                <p class="section-eyebrow mono">// personal</p>
+                <h2 class="section-title">Side projects & mods</h2>
+            </div>
             <div class="projects-grid">
-                <div class="project-card animate-on-scroll">
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="media/website.PNG" alt="This Website">
+                        <img src="media/website.PNG" alt="This portfolio website">
                         <div class="project-overlay">
-                            <span class="overlay-btn">You're Here!</span>
+                            <span class="overlay-btn overlay-muted">You're here</span>
                         </div>
                     </div>
                     <div class="project-content">
-                        <h3>This Website</h3>
-                        <p>I built this portfolio with Cursor and AI-assisted development to showcase my projects and skills.</p>
+                        <h3>This site</h3>
+                        <p>Portfolio built with AI-assisted HTML, JavaScript, and CSS development.</p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Web Design</span>
-                            <span class="tech-tag">Cursor</span>
-                            <span class="tech-tag">AI-assisted</span>
+                            <span class="tech-tag">HTML/CSS</span>
+                            <span class="tech-tag">JavaScript</span>
                             <span class="tech-tag">UI/UX</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
-                        <img src="media/gamejam.PNG" alt="Mend">
+                        <img src="media/gamejam.PNG" alt="Mend platformer">
                         <div class="project-overlay">
-                            <a href="https://hackrain.itch.io/mend" class="overlay-btn">View Project</a>
+                            <a href="https://hackrain.itch.io/mend" class="overlay-btn" target="_blank"
+                                rel="noopener noreferrer">View project</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Mend</h3>
-                        <p>Mend is an introspective platformer created for the Unlikely Collaborators & International Game
-                            Developers Association game jam. This game was created in collaboration with two other team
-                            members over 12 days.
-                        </p>
+                        <p>Introspective platformer from the Unlikely Collaborators & IGDA jam. A 12-day team sprint
+                            with two teammates. First game jam project.</p>
                         <div class="tech-stack">
                             <span class="tech-tag">Unity</span>
                             <span class="tech-tag">C#</span>
-                            <span class="tech-tag">UI/UX</span>
-                            <span class="tech-tag">Level Design</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.unlikelycollaborators.com/" class="btn btn-primary">Unlikely Collaborators</a>
+                            <span class="tech-tag">Jam</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
                         <div class="project-image-placeholder">Gort Lightshow</div>
                         <div class="project-overlay">
-                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3696184720" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3696184720"
+                                class="overlay-btn" target="_blank" rel="noopener noreferrer">Workshop</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Gort Lightshow</h3>
-                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Adds a goal-celebration lightshow you can toggle with <code>/lightshow</code>.</p>
+                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. A goal-celebration lightshow via
+                            <code>/lightshow</code>.
+                        </p>
                         <div class="tech-stack">
                             <span class="tech-tag">Unity</span>
                             <span class="tech-tag">C#</span>
-                            <span class="tech-tag">Steam Workshop</span>
                             <span class="tech-tag">Puck</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
                         <div class="project-image-placeholder">Gort Sound Pack</div>
                         <div class="project-overlay">
-                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688205089" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688205089"
+                                class="overlay-btn" target="_blank" rel="noopener noreferrer">Workshop</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Gort Sound Pack</h3>
-                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Custom sounds, forked from an existing workshop sound pack with my own edits and additions.</p>
+                        <p>Custom sounds for <em>Puck</em>, forked from an
+                            <a href="https://github.com/oomtm450/Ruleset_PuckMod/tree/main/SoundsPack">existing workshop
+                                pack</a>
+                            with my own edits to add more goal horns.
+                            Original pack by <a href="https://github.com/oomtm450">oomtm450</a>.
+                        </p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Unity</span>
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">Steam Workshop</span>
-                            <span class="tech-tag">Puck</span>
                             <span class="tech-tag">Audio</span>
+                            <span class="tech-tag">Steam</span>
+                            <span class="tech-tag">Puck</span>
                         </div>
                     </div>
-                </div>
-                <div class="project-card animate-on-scroll">
+                </article>
+                <article class="project-card">
                     <div class="project-image">
                         <div class="project-image-placeholder">Gort Sound Library</div>
                         <div class="project-overlay">
-                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688131153" class="overlay-btn" target="_blank" rel="noopener noreferrer">Steam Workshop</a>
+                            <a href="https://steamcommunity.com/sharedfiles/filedetails/?id=3688131153"
+                                class="overlay-btn" target="_blank" rel="noopener noreferrer">Workshop</a>
                         </div>
                     </div>
                     <div class="project-content">
                         <h3>Gort Sound Library</h3>
-                        <p>Unity C# Steam Workshop mod for my <em>Puck</em> server. Sound library with randomized goal horns, forked from another workshop pack and customized.</p>
+                        <p>Sound library forked and customized for my server. Includes faceoff music, randomized goal
+                            horns, and other sounds. Original pack by
+                            <a href="https://github.com/oomtm450">oomtm450</a>.
+                        </p>
                         <div class="tech-stack">
-                            <span class="tech-tag">Unity</span>
-                            <span class="tech-tag">C#</span>
-                            <span class="tech-tag">Steam Workshop</span>
-                            <span class="tech-tag">Puck</span>
                             <span class="tech-tag">Audio</span>
+                            <span class="tech-tag">Steam</span>
+                            <span class="tech-tag">Puck</span>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="site-footer">
         <div class="footer-content">
-            <div class="footer-info">
-                <h3>Jack Kirk</h3>
-                <p>Software Developer & Game Designer</p>
+            <div class="footer-brand">
+                <div>
+                    <h3>Jack Kirk</h3>
+                    <p>Developer & game designer</p>
+                </div>
             </div>
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <a href="#hero">Home</a>
+            <nav class="footer-links" aria-label="Footer">
+                <a href="#about">About</a>
                 <a href="#featured">Featured</a>
                 <a href="#academic">Academic</a>
                 <a href="#personal">Personal</a>
-            </div>
-            <div class="footer-contact">
-                <h4>Connect</h4>
-                <div class="social-icons footer-social">
-                    <a href="https://www.linkedin.com/in/jwkirk15" class="social-icon" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/HackRaindrop" class="social-icon" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="media/Jack_Kirk_Resume.pdf" class="social-icon" aria-label="Resume">
-                        <i class="fas fa-file-alt"></i>
-                    </a>
-                </div>
+            </nav>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/jwkirk15" class="social-link" aria-label="LinkedIn" target="_blank"
+                    rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/HackRaindrop" class="social-link" aria-label="GitHub" target="_blank"
+                    rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                <a href="media/Jack_Kirk_Resume.pdf" class="social-link" aria-label="Resume" target="_blank"
+                    rel="noopener noreferrer"><i class="fas fa-file-alt"></i></a>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Jack Kirk. All rights reserved.</p>
-        </div>
+        <p class="footer-copy mono">&copy; 2026 Jack Kirk</p>
     </footer>
+
+    <aside class="status-bar mono" aria-label="Site status">
+        <span id="status-message">Building the next thing</span>
+        <span class="status-sep">·</span>
+        <span id="status-time">--:--</span>
+        <span class="status-sep">·</span>
+        <span>Hosted on Heroku</span>
+    </aside>
+
+    <a href="#top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
 
     <script src="scripts/script.js"></script>
 </body>
