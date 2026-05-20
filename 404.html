@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting to Jack Kirk Portfolio</title>
-    <meta http-equiv="refresh" content="0; url=https://jackwkirk.com">
     <link rel="canonical" href="https://jackwkirk.com">
-    <script>location.replace("https://jackwkirk.com");</script>
+    <script>
+        // GitHub Pages: send any old deep links to the new site
+        var target = "https://jackwkirk.com";
+        var path = window.location.pathname.replace(/^\/Portfolio-Website/, "") || "/";
+        var search = window.location.search || "";
+        var hash = window.location.hash || "";
+        location.replace(target + path + search + hash);
+    </script>
     <style>
         body {
             font-family: system-ui, sans-serif;
